@@ -4,3 +4,4 @@ class Process:
         self.process_id = process_id
         self.burst_time = burst_time
         self.remaining_time = burst_time
+        self.cumulative_waiting_time = 0
