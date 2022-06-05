@@ -4,14 +4,12 @@ from CyclicProcess import CyclicProcess
 from queue import PriorityQueue
 
 
-def EDF():
+def SCT():
     num_of_processes = int(input("Enter Number of Processes: "))
     p_info = []
     for i in range(num_of_processes):
         a, b, c = [int(x) for x in input(f"Enter (c, p, d) with Space Separated For Process {i + 1}: ").split(' ')]
         p_info.append([a, b, c])
-    # print(p_info)
-    # print(lcm(p_info))
 
     major_cycle = lcm(p_info)
 
@@ -26,7 +24,7 @@ def EDF():
     schedule = PriorityQueue(num_of_processes)
 
     for element in process_list:
-        schedule.put((element.next_deadline, 0, element.process_id, element))
+        schedule.put((element.remaining_c, 0, element.process_id, element))
 
     final_table = []
     for time in range(major_cycle):
@@ -37,9 +35,9 @@ def EDF():
                 element.remaining_c = element.c
                 element.next_deadline = (int(time / element.d) + 1) * element.d
                 if previous_process_id != element.process_id:
-                    schedule.put((element.next_deadline, 1, element.process_id, element))
+                    schedule.put((element.remaining_c, 1, element.process_id, element))
                 else:
-                    schedule.put((element.next_deadline, 0, element.process_id, element))
+                    schedule.put((element.remaining_c, 0, element.process_id, element))
             element.next_deadline = (int(time / element.d) + 1) * element.d
             frame.append(element.next_deadline)
 
@@ -67,7 +65,7 @@ def EDF():
             if current_process.remaining_c == 0:
                 pass
             else:
-                schedule.put((current_process.next_deadline, 0, current_process.process_id, current_process))
+                schedule.put((current_process.remaining_c, 0, current_process.process_id, current_process))
 
             final_table.append(frame)
 

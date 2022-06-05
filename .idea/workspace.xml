@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5eed8c1f-d7f4-446f-afd5-a58701bc4e1f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EDF_earliest_deadline_first.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SCT_shortest_comp_time.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CyclicProcess.py" beforeDir="false" afterPath="$PROJECT_DIR$/CyclicProcess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EDF_earliest_deadline_first.py" beforeDir="false" afterPath="$PROJECT_DIR$/EDF_earliest_deadline_first.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +45,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User.LAPTOP-7IBUGTTH\PycharmProjects\Scheduling_Algorithms_Calculator" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="first_come_first_serve" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
