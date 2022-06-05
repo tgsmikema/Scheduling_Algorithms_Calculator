@@ -33,7 +33,7 @@ def LST():
             if time == element.next_deadline:
                 # every new period update remaining comp time, and rejoin the queue
                 element.remaining_c = element.c
-                element.slack_time = element.c
+                element.slack_time = element.d - element.c
                 element.next_deadline = (int(time / element.d) + 1) * element.d
                 if previous_process_id != element.process_id:
                     schedule.put((element.slack_time, 1, element.process_id, element))
