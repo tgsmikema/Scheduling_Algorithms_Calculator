@@ -79,8 +79,41 @@ def PE_SJF():
 
         process_event_list.append(event)
 
+    total_waiting_time = 0
+    print()
+    for element in process_list:
+        total_waiting_time += element.cumulative_waiting_time
+        print("P" + str(element.process_id + 1) + " Waiting Time: " + str(element.cumulative_waiting_time))
+
+    average_waiting_time = total_waiting_time / len(process_list)
+    print()
+    print("Average Waiting Time: " + str(average_waiting_time))
 
     # print(process_event_list)
+
+    temp = process_event_list.copy()
+    for jj in range(len(temp)):
+        for ii in range(1, len(temp)):
+            if temp[ii][0] == temp[ii-1][0]:
+                temp[ii-1] = temp[ii]
+    timing_arr = [temp[0]]
+
+    j = 0
+    for iii in range(len(temp)):
+        if timing_arr[j] == temp[iii]:
+            pass
+        else:
+            j += 1
+            timing_arr.append(temp[iii])
+    # print(timing_arr)
+
+    final_print_array = [[timing_arr[0][0], timing_arr[0][1], timing_arr[0][1]]]
+    for i in range(1, len(timing_arr)):
+        final_print_array.append([timing_arr[i][0], timing_arr[i][1]-timing_arr[i-1][1], timing_arr[i][1]])
+
+    print_schedule(final_print_array)
+
+
 
 
 def get_processes_in_queue(queue):
@@ -112,3 +145,28 @@ def other_process_havent_done(the_id, obj_l):
         if element.remaining_time != 0 and element.process_id != the_id:
             new_list.append(element)
     return new_list
+
+# [PROCESS_ID, RUNNING_TIME_CURRENT_ROUND, TOTAL_TIME_SNAPSHOT]
+def convert_schedule_list(the_list):
+    new_list = []
+    for i in range(len(the_list)):
+        time_snap = 0
+        for j in range(i + 1):
+            time_snap += the_list[j][1]
+        new_list.append([the_list[i][0], the_list[i][1], time_snap])
+    return new_list
+
+
+def print_schedule(the_list):
+    new_list = convert_schedule_list(the_list)
+
+    result_str = " | "
+    for i in new_list:
+        result_str += "P" + str(i[0] + 1) + " t:" + str(i[1]) + " \t| "
+
+    timing_str = " 0"
+    for i in new_list:
+        timing_str += "\t\t\t" + str(i[2])
+
+    print(result_str)
+    print(timing_str)
