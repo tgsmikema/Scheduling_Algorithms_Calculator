@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5eed8c1f-d7f4-446f-afd5-a58701bc4e1f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CyclicProcess.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Process.py" beforeDir="false" afterPath="$PROJECT_DIR$/Process.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pre_emptive_short_job_first.py" beforeDir="false" afterPath="$PROJECT_DIR$/pre_emptive_short_job_first.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

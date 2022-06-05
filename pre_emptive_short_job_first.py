@@ -88,6 +88,7 @@ def PE_SJF():
     average_waiting_time = total_waiting_time / len(process_list)
     print()
     print("Average Waiting Time: " + str(average_waiting_time))
+    print()
 
     # print(process_event_list)
 
