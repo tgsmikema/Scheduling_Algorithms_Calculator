@@ -56,11 +56,12 @@ def RR():
     total_waiting_time = 0
     for element in process_list:
         total_waiting_time += element.cumulative_waiting_time
-        # print(element.cumulative_waiting_time)
+        print("P" + str(element.process_id + 1) + " Waiting Time: " + str(element.cumulative_waiting_time))
 
     average_waiting_time = total_waiting_time / len(process_list)
     print_schedule(process_event_list)
-    print(average_waiting_time)
+    print()
+    print("Average Waiting Time: " + str(average_waiting_time))
 
 
 def other_process_havent_done(the_id, obj_l):
@@ -83,7 +84,6 @@ def convert_schedule_list(the_list):
 
 
 def print_schedule(the_list):
-
     new_list = convert_schedule_list(the_list)
 
     result_str = " | "
