@@ -24,11 +24,14 @@ def LST():
     schedule = PriorityQueue(num_of_processes)
 
     for element in process_list:
-        schedule.put((element.slack_time, 0, element.process_id, element))
+        schedule.put((element.slack_time, element.in_prev_round, element.process_id, element))
 
     final_table = []
     for time in range(major_cycle):
         frame = [time]
+        for e in process_list:
+            e.in_prev_round = 1
+
         for element in process_list:
             if time == element.next_deadline:
                 # every new period update remaining comp time, and rejoin the queue
@@ -36,9 +39,9 @@ def LST():
                 element.slack_time = element.d - element.c
                 element.next_deadline = (int(time / element.d) + 1) * element.d
                 if previous_process_id != element.process_id:
-                    schedule.put((element.slack_time, 1, element.process_id, element))
+                    schedule.put((element.slack_time, element.in_prev_round, element.process_id, element))
                 else:
-                    schedule.put((element.slack_time, 0, element.process_id, element))
+                    schedule.put((element.slack_time, element.in_prev_round, element.process_id, element))
             element.next_deadline = (int(time / element.d) + 1) * element.d
             # frame.append(element.next_deadline)
 
@@ -63,6 +66,8 @@ def LST():
 
             frame.append(current_process.process_id)
 
+
+
             current_process.remaining_c -= 1
 
             if current_process.remaining_c != 0:
@@ -81,9 +86,18 @@ def LST():
             while not schedule.empty():
                 schedule.get()
             for proces in process_list:
-                ssss = proces.slack_time
-                if proces.slack_time < 1000:
-                    schedule.put((proces.slack_time, 0, proces.process_id, proces))
+                if proces.slack_time < 1000 and proces.process_id != previous_process_id:
+                    schedule.put((proces.slack_time, proces.in_prev_round, proces.process_id, proces))
+
+            the_list = get_minimum_slack(process_list)
+            for ele in the_list:
+                if ele.process_id == previous_process_id:
+                    ele.in_prev_round = 0
+
+            for proces in process_list:
+                if proces.slack_time < 1000 and proces.process_id == previous_process_id:
+                    schedule.put((proces.slack_time, proces.in_prev_round, proces.process_id, proces))
+
 
             final_table.append(frame)
 
@@ -114,3 +128,20 @@ def lcm(the_list):
         lcm_ = lcm_ * i // gcd(lcm_, i)
     return lcm_
     ####################################################################
+
+def get_minimum_slack(the_list):
+    ret = [the_list[0]]
+    min_slk = the_list[0].slack_time
+    position = 0
+    for i in range(len(the_list)):
+        if the_list[i].slack_time <= min_slk:
+            min_slk = the_list[i].slack_time
+            ret[0] = the_list[i]
+            position = i
+
+    for i in range(len(the_list)):
+        if i != position:
+            if the_list[i].slack_time == ret[0].slack_time:
+                ret.append(the_list[i])
+
+    return ret

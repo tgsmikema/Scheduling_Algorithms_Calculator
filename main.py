@@ -12,10 +12,10 @@ from queue import PriorityQueue
 
 # round_robin.RR()
 
-# pre_emptive_short_job_first.PE_SJF()
+pre_emptive_short_job_first.PE_SJF()
 
 # EDF()
 
 # SCT()
 
-LST()
+# LST()

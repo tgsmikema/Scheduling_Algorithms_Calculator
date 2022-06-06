@@ -9,4 +9,5 @@ class CyclicProcess:
         self.next_deadline = d
         self.previous_on = False
         self.slack_time = d-c
+        self.in_prev_round = 1
 
